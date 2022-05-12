@@ -1,5 +1,6 @@
 FROM alpine:edge
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+RUN echo http://mirrors.ustc.edu.cn/alpine/edge/testing >> /etc/apk/repositories \
   && apk --no-cache add alpine-sdk coreutils sudo \
   && adduser -G abuild -g "Alpine Package Builder" -s /bin/ash -D builder \
   && echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
