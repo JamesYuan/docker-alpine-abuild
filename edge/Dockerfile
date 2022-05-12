@@ -12,6 +12,8 @@ COPY /abuilder /bin/
 USER builder
 RUN mkdir /home/builder/.pip
 COPY /pip.conf /home/builder/.pip/
+RUN mkdir /home/builder/.cargo
+COPY /config /home/builder/.cargo/
 ENTRYPOINT ["abuilder", "-r"]
 WORKDIR /home/builder/package
 ENV RSA_PRIVATE_KEY_NAME ssh.rsa
