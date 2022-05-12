@@ -10,6 +10,8 @@ RUN echo http://mirrors.ustc.edu.cn/alpine/edge/testing >> /etc/apk/repositories
   && ln -s /var/cache/apk /etc/apk/cache
 COPY /abuilder /bin/
 USER builder
+RUN mkdir /home/builder/.pip
+COPY /pip.conf /home/builder/.pip/
 ENTRYPOINT ["abuilder", "-r"]
 WORKDIR /home/builder/package
 ENV RSA_PRIVATE_KEY_NAME ssh.rsa
